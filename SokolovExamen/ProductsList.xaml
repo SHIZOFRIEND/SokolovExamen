@@ -1,0 +1,127 @@
+﻿<Window x:Class="SokolovExamen.ProductsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SokolovExamen"
+           Title="Товары списоке" 
+        FontFamily="Calibri">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+               
+                Padding="10">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            
+                            VerticalAlignment="Center">
+
+                    <TextBox x:Name="tbSearch"
+                             Width="224"
+                             Height="32"
+                             Margin="0,0,10,0"
+                             TextChanged="tbSearch_TextChanged"/>
+
+
+                    <Button x:Name="btnAdd"
+                            Content="Добавить"
+                            Width="120"
+                            Margin="20,0,10,0"
+                            Background="#0000FF"
+                            Foreground="White"
+                            Click="Add_Click"/>
+
+                    <Button x:Name="btnDelete"
+                            Content="Удалить"
+                            Width="120"
+                            Margin="0,0,10,0"
+                            Background="#0000FF"
+                            Foreground="White"
+                            Click="Delete_Click"/>
+                    <Button x:Name="btnOrder"
+         Content="Заказы"
+         Width="120"
+         Margin="0,0,10,0"
+         Background="#0000FF"
+         Foreground="White"
+         Click="Order_Click"/>
+
+                    <Button Content="Выход"
+                            Width="120"
+                            Background="#0000FF"
+                            Foreground="White"
+                            Click="BtnExit_Click"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right">
+
+                    <TextBlock x:Name="tbUser"
+                               Foreground="White"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Right"/>
+
+                    <TextBlock x:Name="tbRole"
+                               Foreground="White"
+                               FontSize="14"
+                               HorizontalAlignment="Right"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <DataGrid x:Name="dgProducts"
+                  Grid.Row="1"
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  MouseDoubleClick="dgProducts_MouseDoubleClick"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding RowBrush}"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Категория" Width="2*" Binding="{Binding CategoryName}"/>
+                <DataGridTextColumn Header="Товар" Width="2*" Binding="{Binding TovarName}"/>
+                <DataGridTextColumn Header="Описание" Width="3*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Производитель" Width="*" Binding="{Binding Manufacturer}"/>
+                <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding Supplier}"/>
+                <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Cost}"/>
+                <DataGridTextColumn Header="Ед." Width="80" Binding="{Binding Unit}"/>
+                <DataGridTextColumn Header="Склад" Width="*" Binding="{Binding Stock}"/>
+                <DataGridTextColumn Header="Итого" Width="*" Binding="{Binding FinalPrice}"/>
+                <DataGridTextColumn Header="%" Width="60" Binding="{Binding Discount, StringFormat={}{0}%}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</Window>
